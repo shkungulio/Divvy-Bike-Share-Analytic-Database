@@ -6,7 +6,12 @@ description: "Building a relational database for Divvy tripdata analysis"
 categories: [R, SQL, Database, Data Analysis]
 tags: [R, PostgreSQL, Data Engineering, Data Analysis, Divvy]
 output: 
-  pdf_document: default
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 12
+    fig_height: 6
+    fig_caption: true
   html_document:
     theme:
       bg: "#1b1b1b"
@@ -337,11 +342,14 @@ CREATE TABLE IF NOT EXISTS divvy.fact_trips (
 ```
 
 ### Helper mappings
+I create two tiny, session-scoped temp tables: tmp_bike_map and tmp_member_map as “helper mappings” right before loading into fact_trips. They snapshot the current dimension lookups into compact, index-friendly tables so the big INSERT…SELECT only needs lightweight joins to translate verbose text (e.g., rideable_type, member_casual) into their surrogate keys (bike_type_id, member_type_id).
+
 Temporary mapping tables for bike table upserts.
 ```{sql tmp_bike_map}
 CREATE TEMP TABLE tmp_bike_map AS
 SELECT rideable_type, bike_type_id FROM divvy.dim_bike_type;
 ```
+
 Temporary mapping tables for member table upserts.
 ```{sql tmp_member_map}
 CREATE TEMP TABLE tmp_member_map AS
@@ -738,6 +746,15 @@ REFRESH MATERIALIZED VIEW divvy.mv_monthly_summary;
 <br>
 
 ## Conclusion
+After completing the design, implementation, and exploration phases of this project, I have successfully developed a fully normalized and query-optimized PostgreSQL database that consolidates all twelve months of Divvy’s 2024 trip data into a single analytical environment. By enforcing 3NF principles and constructing a robust star schema—with clearly defined dimension and fact tables—I ensured data consistency, integrity, and scalability for long-term analytical use.
+
+Through the creation of targeted indexes and materialized views, I achieved significant performance improvements for time-bounded and user-segmented queries, making daily, weekly, and seasonal trend analysis both efficient and reproducible. Helper mappings and automated upsert logic streamlined the ETL process, reducing redundancy and guaranteeing referential accuracy across all loaded datasets.
+
+Exploratory Data Analysis (both in SQL and R) revealed several key behavioral insights. Members tend to ride more frequently, especially during weekdays and commuting hours, while casual users dominate weekend and summer activity with longer, recreational rides. Spatially, stations near downtown and waterfront areas—such as Streeter Dr & Grand Ave and DuSable Lake Shore Dr & Monroe St—emerged as clear demand hotspots. The duration distribution confirmed that most trips are short, under 30 minutes, reflecting a system designed for convenience and high turnover.
+
+Data validation confirmed the overall quality of the dataset—no missing timestamps, no duplicate ride IDs, and all ride durations logically positive—giving me strong confidence in the integrity of analytical outcomes. Moreover, the documented refresh cadence provides a sustainable process for incorporating future data and maintaining the accuracy of derived summaries.
+
+In conclusion, this project demonstrates how careful database design, normalization, and automation can transform raw CSV files into a powerful analytical infrastructure. The resulting system not only supports detailed behavioral insights across time and space but also provides a reusable foundation for predictive modeling, forecasting, and operational optimization in future Divvy analytics initiatives.
 
 ----------------------------------------------------------------- The END ----------------------------------------------------------------- 
 
