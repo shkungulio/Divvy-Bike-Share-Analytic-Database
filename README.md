@@ -17,7 +17,6 @@ Key business questions included:
 * Which stations and routes experience the highest traffic?
 * What temporal patterns (daily, weekly, seasonal) drive demand fluctuations?
 * How can these insights guide Divvy’s operational and marketing strategies?
----
 
 ## Methodology
 ### Data Acquisition & Preparation
