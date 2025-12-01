@@ -1,18 +1,23 @@
 ---
-title: "Divvy Tripdata Database"
-author: "Seif Kungulio"
-date: "`r Sys.Date()`"
+title: |
+  \vspace*{\fill}
+  \fontsize{36}{40}\selectfont \textbf {Divvy Tripdata} \
+  \fontsize{36}{40}\selectfont \textbf {Database}
+author: |
+  \fontsize{24}{28}\selectfont Seif H. Kungulio
+date: |
+  \fontsize{18}{22}\selectfont `r Sys.Date()`
+  \ \vspace*{\fill}
 description: "Building a relational database for Divvy tripdata analysis"
 categories: [R, SQL, Database, Data Analysis]
 tags: [R, PostgreSQL, Data Engineering, Data Analysis, Divvy]
 output: 
   pdf_document:
-    toc: true
-    number_sections: true
+    latex_engine: xelatex
+    toc: false
     highlight: espresso
     include:
       in_header: resources/header.tex
-    latex_engine: xelatex
 header-includes:
   # Font and color setup
   - \usepackage{xcolor}
@@ -32,7 +37,18 @@ editor_options:
   chunk_output_type: console
 ---
 
+\pagenumbering{gobble}
+
 \newpage
+\thispagestyle{plain}
+&nbsp;
+
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
 
 # Introduction
 To investigate ride behavior differences between casual and member users and uncover temporal and spatial patterns in ride activity, a comprehensive and well-structured database is essential. The analysis focuses on understanding how ride patterns vary across time—daily, weekly, and seasonally—and space—stations and routes—while identifying trends in ride duration, station popularity, and overall demand. These insights are critical for guiding Divvy’s operational decisions and marketing strategies.
