@@ -1,12 +1,11 @@
 ---
 title: |
   \vspace*{\fill}
-  \fontsize{36}{40}\selectfont \textbf {Divvy Tripdata} \
-  \fontsize{36}{40}\selectfont \textbf {Database}
+  \fontsize{36}{40}\selectfont \textbf {Divvy Tripdata Database}
 author: |
   \fontsize{24}{28}\selectfont Seif H. Kungulio
 date: |
-  \fontsize{18}{22}\selectfont `r Sys.Date()`
+  \fontsize{18}{22}\selectfont November 15, 2025
   \ \vspace*{\fill}
 description: "Building a relational database for Divvy tripdata analysis"
 categories: [R, SQL, Database, Data Analysis]
