@@ -1,6 +1,6 @@
 [![Project Cover](resources/divvy_cover.png)](resources/divvy_cover.png)
 
-# Divvy Tripdata Database (2024)
+# Divvy Bike-Share Analytic Database
 ### End-to-End Data Engineering & Analytics Project (6.5M+ Records)
 
 ---
