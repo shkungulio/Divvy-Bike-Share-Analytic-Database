@@ -1,4 +1,4 @@
-[![Project Cover](resources/divvy_cover.png)](resources/divvy_cover.png)
+[![Project Cover](resources/template.png)](divvy_database.pdf)
 
 # Divvy Bike-Share Analytic Database
 ### End-to-End Data Engineering & Analytics Project (6.5M+ Records)
